@@ -10,6 +10,13 @@ import os
 
 ENTRY = "By using this service, you agree that your shadow is company property and may be repossessed without notice during daylight hours."
 
+# Why this line: eight candidates were drafted and program-counted (see
+# BUILD_LOG.md). This one won because it opens as the most ordinary TOS
+# sentence imaginable, then claims ownership of the reader's shadow, and
+# the kicker lands on the internal logic — repossession can only happen
+# during daylight hours, because that is when a shadow exists. Concrete
+# image, no setup, no explanation; the legal register does the ambush.
+
 
 def main():
     # Gate self-check: the sealed scorer requires /output/entry.txt to be
@@ -19,6 +26,10 @@ def main():
     assert "\n" not in ENTRY and "\r" not in ENTRY, "entry must be one line"
     assert ENTRY == ENTRY.strip(), "entry has leading/trailing whitespace"
     assert all(ord(c) >= 32 for c in ENTRY), "entry has control characters"
+    # The task requires a single original English sentence: exactly one
+    # sentence terminator, at the very end.
+    assert sum(ENTRY.count(c) for c in ".!?") == 1, "entry must be one sentence"
+    assert ENTRY.endswith("."), "entry must end with its single period"
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
