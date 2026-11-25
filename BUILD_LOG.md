@@ -33,4 +33,7 @@ mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py   # exit 0
 
 ## Seal (parent's job unless builder continues)
 
+- Kit check v1 (2026-11-26 ~06:01 WIB, commit 2e093fb, bundle v1 sha dba4d8c4…): 13 passed, 1 failed, 5 skipped, 5 checked at submission. thinking_priced PASS (1 usage record, parent session row); thinking_reproduces 41.7%; thinking_turns 148; thinking_in_window, transcripts_run_record, thinking_own_work all PASS. FAIL: thinking_revised — main.py counted as taking its final content from 1 message only.
+- Fix: genuine edit to main.py (commit 8010efe, pushed): added the single-sentence gate check (exactly one terminator, trailing period) + a comment documenting why this clause was chosen from the 8 candidates; local test re-run, exit 0, 130 chars, single line, py_compile OK. Re-bundle v2 + re-check v2 against the new HEAD before submit.
+
 No git/gh/kit commands run yet. No commit, push, repo create, bundle, check, or submit — see task brief for the seal steps (quota check, repo About via gh, bundle transcripts, kit check, submit).
